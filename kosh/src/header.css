@@ -1,0 +1,21 @@
+/* Header: background overlay (glow + fine pattern), and a menu that fits 7 links (burger below 1100px). */
+.kw-nav{position:sticky;isolation:isolate}
+
+/* overlay: soft glow + fine diagonal pattern */
+.kw-nav::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(420px 120px at 85% 0,rgba(56,189,248,.28),transparent 70%),
+             radial-gradient(360px 120px at 10% 100%,rgba(37,99,235,.35),transparent 70%),
+             repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 12px)}
+
+.kw-nav .kw-links{gap:20px;font-size:14px}
+@media(min-width:1101px){.kw-nav .kw-brand small{display:block}}
+
+@media(max-width:1100px){
+  .kw-nav .kw-burger{display:inline-grid}
+  .kw-nav .kw-links{display:none;position:absolute;top:100%;left:0;right:0;background:#0a2463;flex-direction:column;gap:0;padding:6px 20px 16px;
+    border-top:1px solid #1b3b86;box-shadow:0 14px 24px rgba(0,0,0,.25);justify-content:flex-start;white-space:normal;z-index:5}
+  .kw-nav .kw-links.open{display:flex}
+  .kw-nav .kw-links a{padding:14px 0;font-size:16px;border-bottom:1px solid #1b3b86}
+  .kw-nav .kw-links a.active{border-left:4px solid #38bdf8;padding-left:12px}
+  .kw-nav .kw-wrap{justify-content:space-between}
+}

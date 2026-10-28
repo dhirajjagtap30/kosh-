@@ -1,0 +1,79 @@
+/* Attendance page (mark / import / report). Colours: green = present, red = absent, amber = late, blue = leave. */
+.att-panel{margin-bottom:16px}
+.att-tabs{margin-bottom:16px}
+.att-tabs button{min-width:0;flex:1 1 180px}
+.att-date{display:grid;gap:4px;font-size:12px;font-weight:600;color:var(--mute)}
+.att-limit{width:90px}
+.att-title{margin:0 0 12px;font-size:18px}
+.att-empty{padding:24px 0;text-align:center}
+.att-ok{color:#166534;font-weight:600;margin:10px 0 0}
+.att-warn{background:#fff7e0;border:1px solid #f5d98b;color:#7a4b00;border-radius:10px;padding:9px 12px;font-size:13.5px;margin:10px 0}
+.att-bad{color:#b91c1c;font-weight:600}
+.att-h{margin:18px 0 8px;font-size:16px}
+
+.att-chip{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12.5px;background:#eef1f7;color:#334}
+.att-chip.p{background:#dff7e6;color:#166534}.att-chip.a{background:#fee2e2;color:#b91c1c}.att-chip.l{background:#fff1cc;color:#92400e}.att-chip.v{background:#e0ecff;color:#1d4ed8}
+.att-counts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.att-quick{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+
+.att-list{display:grid;gap:8px}
+.att-row{display:grid;grid-template-columns:minmax(150px,1.2fr) auto minmax(120px,1fr);gap:10px;align-items:center;padding:10px 12px;border:1px solid #e4e9f2;border-left:5px solid #d6dff2;border-radius:12px;background:#fff}
+.att-row.is-p{border-left-color:#22c55e}.att-row.is-a{border-left-color:#ef4444}.att-row.is-l{border-left-color:#f59e0b}.att-row.is-v{border-left-color:#3b82f6}
+.att-who{display:grid;gap:2px;min-width:0}.att-who b{overflow:hidden;text-overflow:ellipsis}
+.att-times{font-size:12px;color:#1d4ed8}
+.att-seg{display:flex;gap:4px}
+.att-seg button{border:1.5px solid #cbd5e8;background:#fff;border-radius:8px;padding:7px 11px;font:600 13px inherit;font-family:inherit;cursor:pointer;color:#445}
+.att-seg button.p.on{background:#22c55e;border-color:#22c55e;color:#fff}.att-seg button.a.on{background:#ef4444;border-color:#ef4444;color:#fff}
+.att-seg button.l.on{background:#f59e0b;border-color:#f59e0b;color:#fff}.att-seg button.v.on{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.att-note{min-width:0;padding:8px 10px;font-size:14px}
+.att-savebar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:10px 0;border-top:1px solid #eef1f7}
+.att-savebar.stick{position:sticky;bottom:0;background:#fff}
+
+.att-help{background:#f5f9ff;border:1px dashed #93b4f0;border-radius:12px;padding:10px 14px;margin-bottom:14px}
+.att-help summary{cursor:pointer;font-weight:600}.att-help ol{margin:8px 0 6px;padding-left:20px;display:grid;gap:6px;font-size:14px}
+.att-drop{display:grid;gap:12px;justify-items:start;padding:8px 0}
+.att-paste{width:100%;margin:0}.att-paste textarea{font-family:ui-monospace,Consolas,monospace;font-size:13px}
+.att-filebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.att-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 12px;margin-top:8px}
+.att-prev{margin:8px 0 4px;border:1px solid #e4e9f2;border-radius:10px}
+.att-th-on{background:#e0edff}.att-th-on small{font-weight:500;color:#1d4ed8}
+.att-stats{grid-template-columns:repeat(3,1fr);margin-bottom:10px}
+.att-opt{align-items:flex-start;margin-top:22px}
+.att-result{padding:6px 2px}.att-result h3{margin:0 0 8px}.att-result ul{margin:0 0 10px;padding-left:20px;display:grid;gap:4px}
+
+.att-views{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.att-seg2{margin:0}.att-seg2 button{min-width:130px;flex:0 0 auto}
+.att-matrix{border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:100%}
+.att-matrix th,.att-matrix td{padding:6px 3px;text-align:center;border-bottom:1px solid #eef1f7;min-width:23px;white-space:nowrap}
+.att-matrix .tot{background:#f9fafc;min-width:34px;font-weight:600}.att-matrix thead .tot{background:#eef2fa}
+.att-matrix td.tot.att-pct{border-right:0}
+.att-matrix thead th{background:#f6f8fc;color:var(--mute);font-weight:600;position:sticky;top:0}
+.att-matrix .att-sticky{position:sticky;left:0;background:#fff;text-align:left;min-width:150px;max-width:190px;overflow:hidden;text-overflow:ellipsis;z-index:1;border-right:1px solid #e4e9f2}
+.att-matrix thead .att-sticky{background:#f6f8fc;z-index:2}
+.att-matrix .att-sticky small{display:block;color:var(--mute);font-weight:400}
+.att-matrix .sun{background:#f3f4f8}
+.att-matrix .c-p{color:#166534;background:#e6f9ec;font-weight:700}.att-matrix .c-a{color:#b91c1c;background:#fee9e9;font-weight:700}
+.att-matrix .c-l{color:#92400e;background:#fff4d6;font-weight:700}.att-matrix .c-v{color:#1d4ed8;background:#e5eeff;font-weight:700}
+.att-matrix tr.low-row .att-sticky{box-shadow:inset 4px 0 0 #ef4444}
+.att-pct{font-weight:700}.att-pct.good{color:#166534}.att-pct.mid{color:#b45309}.att-pct.low{color:#b91c1c}
+.att-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0;font-size:13px;color:var(--mute)}
+
+/* student / parent view */
+.att-me-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:12px}
+.att-me-grid span{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;font-size:13px;background:#f3f4f8;color:#667}
+.att-me-grid .hd{background:none;aspect-ratio:auto;font-weight:600;font-size:12px}
+.att-me-grid .c-p{background:#dff7e6;color:#166534;font-weight:700}.att-me-grid .c-a{background:#fee2e2;color:#b91c1c;font-weight:700}
+.att-me-grid .c-l{background:#fff1cc;color:#92400e;font-weight:700}.att-me-grid .c-v{background:#e0ecff;color:#1d4ed8;font-weight:700}
+
+@media (max-width:760px){
+  .att-row{grid-template-columns:1fr}
+  .att-seg{flex-wrap:wrap}.att-seg button{flex:1 1 auto}
+  .att-stats{grid-template-columns:1fr}
+}
+@media print{
+  .att-panel{box-shadow:none!important;border:0!important;padding:0!important}
+  .att-matrix{font-size:9px}.att-matrix .att-sticky{position:static}
+}
+
+/* stat cards: label + note on their own lines */
+.db-stat>span:not(.db-stat-ic),.db-stat>small{display:block}

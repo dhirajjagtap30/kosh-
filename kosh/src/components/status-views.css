@@ -1,0 +1,14 @@
+.api-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:48px 16px;text-align:center;
+  font:500 15px 'Poppins','Segoe UI',system-ui,sans-serif;color:#2563eb}
+.api-state.full{min-height:100vh;background:#eef4ff}
+.api-state.err{color:#0a2463}
+.api-state.err b{color:#b91c1c;font-size:17px}
+.api-state.err span{color:#5b6577;max-width:420px}
+.api-state .api-retry{width:auto;margin-top:6px}
+.api-spin{width:30px;height:30px;border-radius:50%;border:3px solid #dbe7ff;border-top-color:#2563eb;animation:api-rot .8s linear infinite}
+@keyframes api-rot{to{transform:rotate(360deg)}}
+.api-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fee2e2;color:#991b1b;border:1px solid #fecaca;
+  border-radius:10px;padding:11px 14px;font-size:14px;font-weight:500;margin-bottom:16px}
+.api-banner button{border:0;background:none;color:inherit;font-size:16px;cursor:pointer;line-height:1}
+.api-field-err{color:#b91c1c;font-size:13px;margin:6px 0 0;text-align:left}
+@media (prefers-reduced-motion:reduce){.api-spin{animation-duration:2s}}

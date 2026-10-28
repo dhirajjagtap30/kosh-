@@ -1,0 +1,114 @@
+/* =========================================================
+   Site-wide animation layer. Imported LAST in main.jsx so it
+   wins over kosh.css / theme.css. Respects reduced-motion.
+   ========================================================= */
+@keyframes kdrift{0%{transform:scale(1.04) translate3d(-1.5%,-1%,0)}100%{transform:scale(1.14) translate3d(1.5%,1.2%,0)}}
+@keyframes korb{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(40px,-30px,0) scale(1.15)}100%{transform:translate3d(-30px,30px,0) scale(.95)}}
+@keyframes kup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes kfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes kfloat2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(12px) rotate(1.5deg)}}
+@keyframes kslide{0%{background-position:0 0}100%{background-position:200% 0}}
+@keyframes kglow{0%,100%{box-shadow:0 8px 20px rgba(37,99,235,.35)}50%{box-shadow:0 8px 34px rgba(56,189,248,.7)}}
+@keyframes klogo{0%,100%{filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}50%{filter:drop-shadow(0 0 14px rgba(125,211,252,.85))}}
+@keyframes kpop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+
+/* ---- scroll progress bar ---- */
+.kw-progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:200;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#22d3ee,#3b82f6,#8b5cf6);pointer-events:none}
+
+/* ---- page change ---- */
+.kw-main{animation:kup .55s cubic-bezier(.2,.7,.2,1) both}
+
+/* ---- scroll reveal (classes added by useReveal) ---- */
+.kw .rv{opacity:0;transform:translateY(34px) scale(.98);animation:none;transition:opacity .75s ease var(--rd,0ms),transform .75s cubic-bezier(.2,.7,.2,1) var(--rd,0ms)}
+.kw .rv.rv-in{opacity:1;transform:none}
+.kw .kw-card,.kw .kw-stepcard,.kw .kw-quick a{animation:none} /* reveal handles these now */
+
+/* ================= HERO ================= */
+.kw .kw-hero{position:relative;isolation:isolate;overflow:hidden;background:#061a45}
+.kw-hero-bg{position:absolute;inset:-6%;z-index:-4;background:url("/hero-bg.jpg") center/cover no-repeat;animation:kdrift 26s ease-in-out infinite alternate;will-change:transform}
+.kw-hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(5,20,62,.62) 0%,rgba(5,20,62,.18) 55%,rgba(5,20,62,.4) 100%),radial-gradient(900px 480px at 85% 10%,rgba(37,99,235,.35),transparent 65%)}
+.kw-hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+.kw-orb{position:absolute;z-index:-3;border-radius:50%;filter:blur(70px);pointer-events:none;animation:korb 14s ease-in-out infinite alternate}
+.kw-orb.o1{width:420px;height:420px;left:-120px;top:-80px;background:rgba(14,165,233,.35)}
+.kw-orb.o2{width:480px;height:480px;right:-140px;bottom:-160px;background:rgba(99,102,241,.35);animation-delay:-6s}
+
+/* staggered hero text */
+.kw .kw-hero-grid>div:first-child>*{animation:kup .9s cubic-bezier(.2,.7,.2,1) both}
+.kw .kw-hero-grid>div:first-child>*:nth-child(1){animation-delay:.05s}
+.kw .kw-hero-grid>div:first-child>*:nth-child(2){animation-delay:.18s}
+.kw .kw-hero-grid>div:first-child>*:nth-child(3){animation-delay:.32s}
+.kw .kw-hero-grid>div:first-child>*:nth-child(4){animation-delay:.46s}
+.kw .kw-hero-grid>div:first-child>*:nth-child(5){animation-delay:.6s}
+.kw .kw-hero-grid>div:first-child>h1{background:linear-gradient(100deg,#fff 30%,#7dd3fc 55%,#fff 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:kup .9s cubic-bezier(.2,.7,.2,1) .18s both,kslide 8s linear 1.2s infinite}
+
+/* chips with icons */
+.kw .kw-chip{display:inline-flex;align-items:center;gap:8px;transition:transform .25s,box-shadow .25s}
+.kw .kw-chip:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.kw .kw-chip .kw-ico{color:#2563eb;animation:kfloat 3.6s ease-in-out infinite}
+.kw .kw-chip:nth-child(2) .kw-ico{color:#0ea5e9;animation-delay:-1.2s}.kw .kw-chip:nth-child(3) .kw-ico{color:#f59e0b;animation-delay:-2.4s}
+
+/* sign-in card: float + moving gradient edge + floating badges */
+.kw-si-wrap{position:relative;display:grid;justify-items:center;animation:kup 1s cubic-bezier(.2,.7,.2,1) .25s both}
+.kw-si-wrap .kw-signin{animation:kfloat 7s ease-in-out infinite;backdrop-filter:blur(6px);background:rgba(30,41,59,.88)}
+.kw-signin::before{background:linear-gradient(90deg,#22d3ee,#3b82f6,#8b5cf6,#22d3ee);background-size:200% 100%;animation:kslide 4s linear infinite}
+.kw-float{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);color:#fff;font-size:12px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.kw-float b{display:block;font-size:18px;line-height:1.1}
+.kw-float .kw-ico{color:#7dd3fc}
+.kw-float.f1{left:-34px;top:34px;animation:kfloat 5s ease-in-out infinite}
+.kw-float.f2{right:-26px;bottom:60px;animation:kfloat2 6s ease-in-out infinite}
+@media(max-width:1100px){.kw-float{display:none}}
+.kw-si-tabs button{transition:background .2s,color .2s,transform .15s}.kw-si-tabs button:active{transform:scale(.97)}
+.kw-si-google,.kw-si-email{transition:transform .2s,box-shadow .2s,background .2s}
+.kw-si-google:hover,.kw-si-email:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+
+/* ================= BUTTONS / NAV ================= */
+.kw .kw-btn{position:relative;overflow:hidden}
+.kw .kw-btn::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.kw .kw-btn:hover::after{left:130%}
+.kw .kw-btn:hover{transform:translateY(-2px)}
+.kw .kw-hero .kw-cta-row .kw-btn:not(.ghost){animation:kglow 2.8s ease-in-out infinite}
+.kw-logo{animation:klogo 4s ease-in-out infinite;transition:transform .3s}.kw-brandrow:hover .kw-logo{transform:rotate(-6deg) scale(1.08)}
+@media(min-width:1101px){
+  .kw-nav .kw-links a{position:relative;border-bottom-color:transparent!important}
+  .kw-nav .kw-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:#38bdf8;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .kw-nav .kw-links a:hover::after,.kw-nav .kw-links a.active::after{transform:scaleX(1)}
+}
+
+/* ================= ICONS ================= */
+.kw-ico{flex:none}
+.kw-quick .qi{color:#fff}.kw-quick a:hover .qi{animation:kpop .5s}
+.kw-strip-grid .kw-ico{width:34px;height:34px;padding:7px;border-radius:10px;color:#fff;background:var(--k-grad);margin-bottom:8px;box-sizing:border-box;box-shadow:0 6px 14px rgba(37,99,235,.3);transition:transform .3s}
+.kw-strip-grid>div:hover .kw-ico{transform:translateY(-4px) rotate(-6deg)}
+.kw-stepcard{position:relative;transition:transform .3s,box-shadow .3s}
+.kw-stepcard:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(10,36,99,.14)}
+.kw-stepcard i{width:48px;height:48px;border-radius:14px;transition:transform .3s}.kw-stepcard:hover i{transform:rotate(-8deg) scale(1.1)}
+.kw-stepno{position:absolute;right:16px;top:12px;font-size:30px;font-weight:800;color:rgba(37,99,235,.12)}
+.kw-card .ic{display:grid;place-items:center;width:42px!important;height:42px!important;color:#fff;transition:transform .3s}
+.kw-card:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.kw-card{transition:transform .3s,box-shadow .3s}.kw-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(10,36,99,.15)}
+.kw-tile{transition:transform .25s,box-shadow .25s}.kw-tile:hover{transform:translateY(-4px) scale(1.03)}
+.kw-step i{transition:transform .3s}.kw-step:hover i{transform:scale(1.15)}
+.kw-chart>div{transform-origin:bottom;animation:kbar 1.2s cubic-bezier(.2,.7,.2,1) both}
+.kw-chart>div:nth-child(2){animation-delay:.1s}.kw-chart>div:nth-child(3){animation-delay:.2s}.kw-chart>div:nth-child(4){animation-delay:.3s}.kw-chart>div:nth-child(5){animation-delay:.4s}.kw-chart>div:nth-child(6){animation-delay:.5s}
+@keyframes kbar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ================= DARK SECTIONS + FOOTER: same network image, slowly drifting ================= */
+.kw .kw-sec.dark,.kw .kw-foot{position:relative;isolation:isolate;overflow:hidden}
+.kw .kw-sec.dark{background:#071c52}
+.kw .kw-foot{background:#061845}
+.kw .kw-sec.dark::before,.kw .kw-foot::before{content:"";position:absolute;inset:-8%;z-index:-2;background:url("/hero-bg.jpg") center/cover;opacity:.9;animation:kdrift 30s ease-in-out infinite alternate}
+.kw .kw-sec.dark::after,.kw .kw-foot::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,rgba(7,28,82,.75),rgba(11,58,168,.35))}
+.kw-flow .kw-step{transition:transform .3s}
+.kw .kw-cta-band{background-size:200% 200%;animation:kgrad 10s ease infinite}
+@keyframes kgrad{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+
+/* mobile: lighter effects */
+@media(max-width:700px){.kw-orb{display:none}.kw .rv{transform:translateY(22px)}}
+
+/* respect "reduce motion" */
+@media(prefers-reduced-motion:reduce){
+  .kw-hero-bg,.kw-orb,.kw-logo,.kw-signin,.kw-signin::before,.kw-float,.kw-main,.kw .kw-hero-grid>div:first-child>h1,.kw .kw-chip .kw-ico,.kw .kw-cta-band,.kw-chart>div,
+  .kw .kw-sec.dark::before,.kw .kw-foot::before,.kw .kw-hero-grid>div:first-child>*,.kw-si-wrap{animation:none!important}
+  .kw .rv{opacity:1;transform:none;transition:none}
+  .kw .kw-hero-grid>div:first-child>h1{-webkit-text-fill-color:#fff;background:none}
+}

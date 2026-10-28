@@ -1,0 +1,33 @@
+/* =========================================================
+   1) READABILITY FIX — the website's 160px dark photo band (glass.css `.kw::before`) was also drawn behind the
+      dashboards (their root is also `.kw`), so the page title / buttons at the top were dark text on dark blue.
+   2) Cleaner dashboard surfaces (white cards, soft shadows).
+   3) White-label: every brand colour follows --brand / --brand-dark (set per branch by BrandContext).
+   ========================================================= */
+.kw.db::before{display:none!important}
+.db .db-page-head h1{color:var(--navy);text-shadow:none}
+.db .db-page-head .db-muted{color:#475569}
+.db-main{background:transparent}
+.db-stat,.db-table-wrap,.db-modal,.db-pop{box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06)}
+.db-stat,.db-table-wrap{background:#fff}
+.db-toolbar{background:#fff;border:1px solid #e3eaf7;border-radius:14px;padding:10px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.db-side{background:#fff}
+.db-link:hover{background:var(--brand-soft,#eef4ff)}
+
+/* white-label colours (fall back to the original blue when no branch brand is active) */
+.db-top,.kd .kd-top{background:linear-gradient(90deg,var(--brand-dark,#0a2463),var(--brand,#2563eb))!important}
+.kd{--navy:var(--brand-dark,#0a2463)!important;--blue:var(--brand,#2563eb)!important;--ink:var(--brand-dark,#0a2463)!important}
+.kd .kd-hero{background:linear-gradient(135deg,var(--brand-dark,#1d4ed8),var(--brand,#38bdf8))!important}
+.kd .kd-side button.on,.kd .kc-chip.on{background:var(--brand-soft,#dceafe)!important;color:var(--brand,#2563eb)!important}
+.kd .kc-chip.on{background:var(--brand,#2563eb)!important;color:#fff!important}
+.kd .kd-bar>div,.kd .kc-bar>div{background:var(--brand,#2563eb)!important}
+.kd-av,.db-avatar,.kw-user-av{background:var(--brand,#2563eb)!important}
+.db-link.active{background:linear-gradient(90deg,var(--brand-soft,#dbeafe),#fff)!important;border-left-color:var(--brand,#2563eb)!important;color:var(--brand,#1d4ed8)!important}
+.db-stat{border-top-color:var(--brand,#2563eb)!important}
+.db-table th{background:var(--brand-soft,#eef4ff)!important;color:var(--brand-dark,#1e3a8a)!important}
+.kw-sec.dark,.kw-cta-band{background-color:var(--brand-dark,#0a2463)}
+
+/* super admin branch switcher in the top bar */
+.db-branch-switch{max-width:210px;border-radius:10px;border:1.5px solid rgba(255,255,255,.5);background:rgba(255,255,255,.12);color:#fff;font:500 14px inherit;font-family:inherit;padding:9px 10px;cursor:pointer}
+.db-branch-switch option{color:#0f172a}
+@media(max-width:620px){.db-branch-switch{max-width:130px}}
